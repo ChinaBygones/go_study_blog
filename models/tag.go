@@ -24,7 +24,6 @@ func GetTagTotal(maps interface{}) (count int) {
 	db.Model(&Tag{}).Where(maps).Count(&count)
 	return
 }
-
 func ExistTagByName(name string) bool {
 	var tag Tag
 	db.Select("id").Where("name = ?", name).First(&tag)
@@ -40,9 +39,9 @@ func AddTag(name string, state int, createdBy string) bool {
 		State:     state,
 		CreatedBy: createdBy,
 	})
+
 	return true
 }
-
 func (tag *Tag) BeforeCreate(scope *gorm.Scope) error {
 	scope.SetColumn("CreatedOn", time.Now().Unix())
 	return nil

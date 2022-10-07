@@ -18,11 +18,9 @@ func GetTags(c *gin.Context) {
 
 	maps := make(map[string]interface{})
 	data := make(map[string]interface{})
-
 	if name != "" {
 		maps["name"] = name
 	}
-
 	var state int = -1
 	if arg := c.Query("state"); arg != "" {
 		state = com.StrTo(arg).MustInt()
